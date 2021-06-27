@@ -2,14 +2,14 @@
   "generator-jhipster": {
     "applicationType": "monolith",
     "gitCompany": "",
-    "baseName": "jhipsterSampleApplication",
-    "packageName": "com.mycompany.myapp",
-    "packageFolder": "com/mycompany/myapp",
-    "serverPort": 8080,
+    "baseName": "myApp",
+    "packageName": "com.myapp",
+    "packageFolder": "com/myapp",
+    "serverPort": "8080",
     "serviceDiscoveryType": false,
     "authenticationType": "jwt",
-    "cacheProvider": "ehcache",
-    "enableHibernateCache": true,
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
@@ -20,16 +20,24 @@
     "buildTool": "maven",
     "useSass": true,
     "clientPackageManager": "npm",
-    "testFrameworks": ["gatling", "cucumber", "protractor"],
+    "testFrameworks": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en", "zh-tw"],
+    "languages": ["en"],
     "clientFramework": "angularX",
     "jhiPrefix": "jhi",
     "withAdminUi": true,
-    "blueprints": [],
-    "otherModules": [],
-    "jhipsterVersion": "7.0.1",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-kotlin"
+      }
+    ],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-kotlin"
+      }
+    ],
+    "jhipsterVersion": "7.1.0",
     "skipClient": false,
     "skipServer": false,
     "skipUserManagement": false,
@@ -42,7 +50,11 @@
     "jwtSecretKey": "MDQ3NzA0OTUzN2VjNzhlNzBjOTU3ZGExY2Q3YmFmYjNmMjZiMGJhNjhjNTMwMTgyNzFkNDU4MDA3NDZlMmNlZjc5Y2JmMmI1NGJjNjQyNWRmNjQxNGQyZWJiNzVkOGYzY2JlYzk0ODRkODhkY2Q2NWViNmEzYTM5ZWVlN2M2ZmM=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": true,
+    "applicationIndex": 0,
+    "entities": ["A", "B"],
+    "devServerPort": 4200,
+    "lastLiquibaseTimestamp": 1624774861000
   },
   "git-provider": "GitHub",
   "git-company": "jhcao23",
