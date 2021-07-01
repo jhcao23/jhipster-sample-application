@@ -1,0 +1,29 @@
+
+application {
+  config {
+    baseName myApp,
+    reactive true,
+    applicationType monolith,
+    blueprints [kotlin],
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity A {
+	id Long
+    name String
+}
+
+entity B {
+	id Long
+    name String
+}
+
+relationship OneToMany {
+	A to B
+}
+    
