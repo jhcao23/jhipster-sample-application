@@ -1,0 +1,75 @@
+
+application {
+  config {
+    baseName learn
+    reactive false
+    blueprints []
+    applicationType monolith
+    packageName technology.touchmars.edu
+    authenticationType jwt
+    prodDatabaseType mysql
+    clientFramework angular
+  }  
+  service * with serviceImpl
+  filter *
+  paginate * with infinite-scroll
+  entities *  
+}
+
+entity UserProfile {
+	id Long
+    name String
+    avatar ImageBlob
+    interests String
+    userId String
+}
+
+entity Course {
+	id Long
+    code String
+    courseType CourseType
+    name String
+    desc TextBlob
+    url String
+    cover ImageBlob
+    version String
+    createdDt ZonedDateTime
+    createdBy String
+    startDt ZonedDateTime
+    endDt ZonedDateTime
+}
+
+entity UserCourse {
+	id Long
+    code String
+    courseType CourseType
+    name String
+    desc TextBlob
+    url String
+    cover ImageBlob
+    beginDt ZonedDateTime
+    dueDt ZonedDateTime    
+    userId String
+}
+
+relationship OneToOne {
+	UserProfile{user required} to User
+}
+
+enum CourseType {
+	PROGRAM, 
+    SPECIALIZATION,
+    COURSE, 
+    SECTION, 
+    LECTURE, 
+    WEEK, 
+    ANYTHING
+}
+
+
+
+
+
+  
+
+    
