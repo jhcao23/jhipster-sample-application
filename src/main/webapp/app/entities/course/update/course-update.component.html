@@ -1,0 +1,161 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-course-heading" data-cy="CourseCreateUpdateHeading" jhiTranslate="learnApp.course.home.createOrEditLabel">
+        Create or edit a Course
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="learnApp.course.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.courseType" for="field_courseType">Course Type</label>
+          <select class="form-control" name="courseType" formControlName="courseType" id="field_courseType" data-cy="courseType">
+            <option [ngValue]="null">{{ 'learnApp.CourseType.null' | translate }}</option>
+            <option value="PROGRAM">{{ 'learnApp.CourseType.PROGRAM' | translate }}</option>
+            <option value="SPECIALIZATION">{{ 'learnApp.CourseType.SPECIALIZATION' | translate }}</option>
+            <option value="COURSE">{{ 'learnApp.CourseType.COURSE' | translate }}</option>
+            <option value="SECTION">{{ 'learnApp.CourseType.SECTION' | translate }}</option>
+            <option value="LECTURE">{{ 'learnApp.CourseType.LECTURE' | translate }}</option>
+            <option value="WEEK">{{ 'learnApp.CourseType.WEEK' | translate }}</option>
+            <option value="ANYTHING">{{ 'learnApp.CourseType.ANYTHING' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.desc" for="field_desc">Desc</label>
+          <textarea class="form-control" name="desc" id="field_desc" data-cy="desc" formControlName="desc"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.url" for="field_url">Url</label>
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.cover" for="field_cover">Cover</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('coverContentType')!.value + ';base64,' + editForm.get('cover')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('cover')!.value"
+              alt="course image"
+            />
+            <div *ngIf="editForm.get('cover')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('coverContentType')!.value }}, {{ byteSize(editForm.get('cover')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('cover', 'coverContentType', 'file_cover')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_cover"
+              data-cy="cover"
+              (change)="setFileData($event, 'cover', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="cover" id="field_cover" data-cy="cover" formControlName="cover" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="coverContentType"
+            id="field_coverContentType"
+            formControlName="coverContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.version" for="field_version">Version</label>
+          <input type="text" class="form-control" name="version" id="field_version" data-cy="version" formControlName="version" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.createdDt" for="field_createdDt">Created Dt</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDt"
+              data-cy="createdDt"
+              type="datetime-local"
+              class="form-control"
+              name="createdDt"
+              formControlName="createdDt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.startDt" for="field_startDt">Start Dt</label>
+          <div class="d-flex">
+            <input
+              id="field_startDt"
+              data-cy="startDt"
+              type="datetime-local"
+              class="form-control"
+              name="startDt"
+              formControlName="startDt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.course.endDt" for="field_endDt">End Dt</label>
+          <div class="d-flex">
+            <input
+              id="field_endDt"
+              data-cy="endDt"
+              type="datetime-local"
+              class="form-control"
+              name="endDt"
+              formControlName="endDt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
