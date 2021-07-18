@@ -1,0 +1,103 @@
+<div>
+  <h2 id="page-heading" data-cy="CourseHeading">
+    <span jhiTranslate="learnApp.course.home.title">Courses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="learnApp.course.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-course"
+        [routerLink]="['/course/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="learnApp.course.home.createLabel"> Create a new Course </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+    <span jhiTranslate="learnApp.course.home.notFound">No courses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="courses && courses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="learnApp.course.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span jhiTranslate="learnApp.course.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="courseType">
+            <span jhiTranslate="learnApp.course.courseType">Course Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="learnApp.course.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="desc"><span jhiTranslate="learnApp.course.desc">Desc</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="url"><span jhiTranslate="learnApp.course.url">Url</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cover"><span jhiTranslate="learnApp.course.cover">Cover</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="version">
+            <span jhiTranslate="learnApp.course.version">Version</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDt">
+            <span jhiTranslate="learnApp.course.createdDt">Created Dt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="learnApp.course.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="startDt">
+            <span jhiTranslate="learnApp.course.startDt">Start Dt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endDt"><span jhiTranslate="learnApp.course.endDt">End Dt</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let course of courses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/course', course.id, 'view']">{{ course.id }}</a>
+          </td>
+          <td>{{ course.code }}</td>
+          <td jhiTranslate="{{ 'learnApp.CourseType.' + course.courseType }}">{{ course.courseType }}</td>
+          <td>{{ course.name }}</td>
+          <td>{{ course.desc }}</td>
+          <td>{{ course.url }}</td>
+          <td>
+            <a *ngIf="course.cover" (click)="openFile(course.cover, course.coverContentType)">
+              <img [src]="'data:' + course.coverContentType + ';base64,' + course.cover" style="max-height: 30px" alt="course image" />
+            </a>
+            <span *ngIf="course.cover">{{ course.coverContentType }}, {{ byteSize(course.cover) }}</span>
+          </td>
+          <td>{{ course.version }}</td>
+          <td>{{ course.createdDt | formatMediumDatetime }}</td>
+          <td>{{ course.createdBy }}</td>
+          <td>{{ course.startDt | formatMediumDatetime }}</td>
+          <td>{{ course.endDt | formatMediumDatetime }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/course', course.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/course', course.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(course)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
