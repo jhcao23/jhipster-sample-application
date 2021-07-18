@@ -1,0 +1,32 @@
+{
+  "learnApp": {
+    "userCourse": {
+      "home": {
+        "title": "User Courses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Course",
+        "createOrEditLabel": "Create or edit a User Course",
+        "notFound": "No User Courses found"
+      },
+      "created": "A new User Course is created with identifier {{ param }}",
+      "updated": "A User Course is updated with identifier {{ param }}",
+      "deleted": "A User Course is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Course {{ id }}?"
+      },
+      "detail": {
+        "title": "User Course"
+      },
+      "id": "Id",
+      "code": "Code",
+      "courseType": "Course Type",
+      "name": "Name",
+      "desc": "Desc",
+      "url": "Url",
+      "cover": "Cover",
+      "beginDt": "Begin Dt",
+      "dueDt": "Due Dt",
+      "userId": "User Id"
+    }
+  }
+}

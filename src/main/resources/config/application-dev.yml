@@ -18,7 +18,7 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    com.mycompany.myapp: DEBUG
+    technology.touchmars.edu: DEBUG
 
 spring:
   devtools:
@@ -32,8 +32,8 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/jhipstersampleapplication;DB_CLOSE_DELAY=-1
-    username: jhipsterSampleApplication
+    url: jdbc:h2:file:./target/h2db/db/learn;DB_CLOSE_DELAY=-1
+    username: learn
     password:
     hikari:
       poolName: Hikari
@@ -74,7 +74,7 @@ jhipster:
   # CORS is only enabled by default with the "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
-    allowed-origins: 'http://localhost:8100,http://localhost:9000'
+    allowed-origins: 'http://localhost:8100,http://localhost:9000,http://localhost:4200'
     allowed-methods: '*'
     allowed-headers: '*'
     exposed-headers: 'Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params'

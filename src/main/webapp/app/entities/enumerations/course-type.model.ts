@@ -1,0 +1,15 @@
+export enum CourseType {
+  PROGRAM = 'PROGRAM',
+
+  SPECIALIZATION = 'SPECIALIZATION',
+
+  COURSE = 'COURSE',
+
+  SECTION = 'SECTION',
+
+  LECTURE = 'LECTURE',
+
+  WEEK = 'WEEK',
+
+  ANYTHING = 'ANYTHING',
+}

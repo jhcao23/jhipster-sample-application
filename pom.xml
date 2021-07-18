@@ -5,11 +5,11 @@
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mycompany.myapp</groupId>
-    <artifactId>jhipster-sample-application</artifactId>
+    <groupId>technology.touchmars.edu</groupId>
+    <artifactId>learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Jhipster Sample Application</name>
+    <name>Learn</name>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -25,15 +25,15 @@
         <!-- Build properties -->
         <maven.version>3.3.9</maven.version>
         <java.version>11</java.version>
-        <node.version>v14.16.0</node.version>
-        <npm.version>7.8.0</npm.version>
+        <node.version>v14.17.1</node.version>
+        <npm.version>7.18.1</npm.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <start-class>com.mycompany.myapp.JhipsterSampleApplicationApp</start-class>
+        <start-class>technology.touchmars.edu.LearnApp</start-class>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
@@ -43,29 +43,30 @@
         <profile.tls />
 
         <!-- Dependency versions -->
-        <jhipster-dependencies.version>7.0.1</jhipster-dependencies.version>
+        <jhipster-dependencies.version>7.1.0</jhipster-dependencies.version>
         <!-- The spring-boot version should match the one managed by
         https://mvnrepository.com/artifact/tech.jhipster/jhipster-dependencies/${jhipster-dependencies.version} -->
-        <spring-boot.version>2.4.4</spring-boot.version>
+        <spring-boot.version>2.4.7</spring-boot.version>
         <!-- The hibernate version should match the one managed by
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
-        <hibernate.version>5.4.29.Final</hibernate.version>
+        <hibernate.version>5.4.32.Final</hibernate.version>
         <!-- The javassist version should match the one managed by
         https://mvnrepository.com/artifact/org.hibernate/hibernate-core/${hibernate.version} -->
         <javassist.version>3.27.0-GA</javassist.version>
         <!-- The liquibase version should match the one managed by
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
-        <liquibase.version>4.3.2</liquibase.version>
-        <liquibase-hibernate5.version>4.3.2</liquibase-hibernate5.version>
+        <liquibase.version>4.3.5</liquibase.version>
+        <liquibase-hibernate5.version>4.3.5</liquibase-hibernate5.version>
         <h2.version>1.4.200</h2.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
-        <archunit-junit5.version>0.17.0</archunit-junit5.version>
+        <archunit-junit5.version>0.19.0</archunit-junit5.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
@@ -73,16 +74,18 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
-        <maven-checkstyle.version>3.1.2</maven-checkstyle.version>
-        <checkstyle.version>8.41.1</checkstyle.version>
-        <spring-nohttp-checkstyle.version>0.0.5.RELEASE</spring-nohttp-checkstyle.version>
-        <frontend-maven-plugin.version>1.11.3</frontend-maven-plugin.version>
-        <git-commit-id-plugin.version>4.0.4</git-commit-id-plugin.version>
-        <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
-        <jib-maven-plugin.version>2.8.0</jib-maven-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+        <checkstyle.version>8.43</checkstyle.version>
+        <nohttp-checkstyle.version>0.0.8</nohttp-checkstyle.version>
+        <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
+        <checksum-maven-plugin.version>1.10</checksum-maven-plugin.version>
+        <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+        <git-commit-id-plugin.version>4.0.5</git-commit-id-plugin.version>
+        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <jib-maven-plugin.version>3.1.1</jib-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
-        <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
         <!-- jhipster-needle-maven-property -->
     </properties>
 
@@ -155,12 +158,16 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
+            <artifactId>mysql</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.cache</groupId>
             <artifactId>cache-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ehcache</groupId>
@@ -188,10 +195,6 @@
             <artifactId>liquibase-core</artifactId>
             <!-- Inherited version from Spring Boot can't be used because of regressions -->
             <version>${liquibase.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -245,6 +248,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -302,35 +311,11 @@
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
         </dependency>
-        <!-- Cucumber -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-spring</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources/</directory>
-            </testResource>
-            <testResource>
-                <directory>src/test/features</directory>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -399,7 +384,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle.version}</version>
+                    <version>${maven-checkstyle-plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
@@ -409,7 +394,7 @@
                         <dependency>
                             <groupId>io.spring.nohttp</groupId>
                             <artifactId>nohttp-checkstyle</artifactId>
-                            <version>${spring-nohttp-checkstyle.version}</version>
+                            <version>${nohttp-checkstyle.version}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -587,7 +572,7 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>jhipstersampleapplication:latest</image>
+                            <image>learn:latest</image>
                         </to>
                         <container>
                             <entrypoint>
@@ -624,11 +609,11 @@
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                         <driver>org.h2.Driver</driver>
-                        <url>jdbc:h2:file:${project.build.directory}/h2db/db/jhipstersampleapplication</url>
+                        <url>jdbc:h2:file:${project.build.directory}/h2db/db/learn</url>
                         <defaultSchemaName></defaultSchemaName>
-                        <username>jhipsterSampleApplication</username>
+                        <username>learn</username>
                         <password></password>
-                        <referenceUrl>hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
+                        <referenceUrl>hibernate:spring:technology.touchmars.edu.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>
                         <logging>debug</logging>
                         <contexts>!test</contexts>
@@ -671,6 +656,10 @@
                     <version>${maven-clean-plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-eclipse-plugin</artifactId>
                     <version>${maven-eclipse-plugin.version}</version>
@@ -710,8 +699,8 @@
                                 <version>[${maven.version},)</version>
                             </requireMavenVersion>
                             <requireJavaVersion>
-                                <message>You are running an incompatible version of Java. JHipster supports JDK 8 to 15.</message>
-                                <version>[1.8,16)</version>
+                                <message>You are running an incompatible version of Java. JHipster supports JDK 8 to 16.</message>
+                                <version>[1.8,17)</version>
                             </requireJavaVersion>
                         </rules>
                     </configuration>
@@ -867,11 +856,75 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>net.nicoulaj.maven.plugins</groupId>
+                        <artifactId>checksum-maven-plugin</artifactId>
+                        <version>${checksum-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>files</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <fileSets>
+                                <fileSet>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>src/main/webapp/**/*.*</include>
+                                        <include>package.json</include>
+                                        <include>webpack/*.*</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>**/app/**/service-worker.js</exclude>
+                                        <exclude>**/app/**/vendor.css</exclude>
+                                    </excludes>
+                                </fileSet>
+                            </fileSets>
+                            <failOnError>false</failOnError>
+                            <failIfNoFiles>false</failIfNoFiles>
+                            <individualFiles>false</individualFiles>
+                            <algorithms>
+                                <algorithm>SHA-1</algorithm>
+                            </algorithms>
+                            <includeRelativePath>true</includeRelativePath>
+                            <quiet>true</quiet>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${maven-antrun-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>eval-frontend-checksum</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <condition property="skip.npm" value="true" else="false" >
+                                            <and>
+                                                <available file="checksums.csv" filepath="${project.build.directory}" />
+                                                <available file="checksums.csv.old" filepath="${project.build.directory}" />
+                                                <filesmatch file1="${project.build.directory}/checksums.csv" file2="${project.build.directory}/checksums.csv.old" />
+                                            </and>
+                                        </condition>
+                                        <copy file="${project.build.directory}/checksums.csv" tofile="${project.build.directory}/checksums.csv.old"/>
+                                    </target>
+                                    <exportAntProperties>true</exportAntProperties>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>install node and npm</id>
+                                <id>install-node-and-npm</id>
                                 <goals>
                                     <goal>install-node-and-npm</goal>
                                 </goals>
@@ -970,7 +1023,7 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>install node and npm</id>
+                                <id>install-node-and-npm</id>
                                 <goals>
                                     <goal>install-node-and-npm</goal>
                                 </goals>
@@ -984,9 +1037,6 @@
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
-                                <configuration>
-                                    <arguments>install</arguments>
-                                </configuration>
                             </execution>
                             <execution>
                                 <id>webapp build test</id>
@@ -1120,28 +1170,6 @@
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
-            <id>e2e</id>
-            <build>
-                <finalName>e2e</finalName>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-maven-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <id>repackage</id>
-                                    <goals>
-                                        <goal>repackage</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
                         </plugin>
                     </plugins>
                 </pluginManagement>
