@@ -1,0 +1,59 @@
+{
+  "name": "UserCourse",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "courseType",
+      "fieldType": "CourseType",
+      "fieldValues": "PROGRAM,SPECIALIZATION,COURSE,SECTION,LECTURE,WEEK,ANYTHING"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cover",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "beginDt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dueDt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "user_course",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["learn"],
+  "changelogDate": "20210718215625"
+}
