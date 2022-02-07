@@ -1,0 +1,26 @@
+{
+  "learnApp": {
+    "userProfileInterest": {
+      "home": {
+        "title": "User Profile Interests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Profile Interest",
+        "createOrEditLabel": "Create or edit a User Profile Interest",
+        "notFound": "No User Profile Interests found"
+      },
+      "created": "A new User Profile Interest is created with identifier {{ param }}",
+      "updated": "A User Profile Interest is updated with identifier {{ param }}",
+      "deleted": "A User Profile Interest is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Profile Interest {{ id }}?"
+      },
+      "detail": {
+        "title": "User Profile Interest"
+      },
+      "id": "Id",
+      "code": "Code",
+      "userProfile": "User Profile",
+      "interest": "Interest"
+    }
+  }
+}

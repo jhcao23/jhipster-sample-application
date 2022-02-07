@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userProfileInterest">
+      <h2 data-cy="userProfileInterestDetailsHeading">
+        <span jhiTranslate="learnApp.userProfileInterest.detail.title">User Profile Interest</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="learnApp.userProfileInterest.id">Id</span></dt>
+        <dd>
+          <span>{{ userProfileInterest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userProfileInterest.code">Code</span></dt>
+        <dd>
+          <span>{{ userProfileInterest.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userProfileInterest.userProfile">User Profile</span></dt>
+        <dd>
+          <div *ngIf="userProfileInterest.userProfile">
+            <a [routerLink]="['/user-profile', userProfileInterest.userProfile?.id, 'view']">{{ userProfileInterest.userProfile?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userProfileInterest.interest">Interest</span></dt>
+        <dd>
+          <div *ngIf="userProfileInterest.interest">
+            <a [routerLink]="['/interest', userProfileInterest.interest?.id, 'view']">{{ userProfileInterest.interest?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-profile-interest', userProfileInterest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

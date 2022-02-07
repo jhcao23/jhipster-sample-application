@@ -1,0 +1,11 @@
+id;code;course_type;name;jhi_desc;url;cover;cover_content_type;begin_dt;due_dt;user_id;course_id
+1;Innovative fault-tolerant definition;COURSE;bypass;../fake-data/blob/hipster.txt;http://dawson.com;../fake-data/blob/hipster.png;image/png;2022-02-06T13:49:30;2022-02-07T00:37:03;1;1
+2;Fork Gloves olive;ANYTHING;Creative Enterprise-wide Consultant;../fake-data/blob/hipster.txt;http://samara.info;../fake-data/blob/hipster.png;image/png;2022-02-06T09:01:53;2022-02-07T00:29:14;2;2
+3;programming;WEEK;Incredible deposit (Vatican;../fake-data/blob/hipster.txt;https://lempi.name;../fake-data/blob/hipster.png;image/png;2022-02-07T01:53:55;2022-02-06T23:26:22;1;3
+4;microchip Iowa Union;COURSE;Frozen;../fake-data/blob/hipster.txt;http://monica.name;../fake-data/blob/hipster.png;image/png;2022-02-06T20:33:16;2022-02-07T00:49:23;2;4
+5;Montana Metal;PROGRAM;Factors;../fake-data/blob/hipster.txt;https://brooklyn.name;../fake-data/blob/hipster.png;image/png;2022-02-06T05:57:28;2022-02-06T07:44:54;1;5
+6;Sleek;COURSE;Division;../fake-data/blob/hipster.txt;http://toney.net;../fake-data/blob/hipster.png;image/png;2022-02-06T14:22:00;2022-02-06T06:26:56;2;6
+7;Hat payment;ANYTHING;USB Home;../fake-data/blob/hipster.txt;https://guiseppe.info;../fake-data/blob/hipster.png;image/png;2022-02-06T09:01:54;2022-02-06T09:46:32;2;7
+8;Car back-end ivory;PROGRAM;infrastructure Grocery Shoes;../fake-data/blob/hipster.txt;https://zola.net;../fake-data/blob/hipster.png;image/png;2022-02-06T08:03:08;2022-02-06T20:39:57;2;8
+9;Chicken bus Integration;PROGRAM;Table;../fake-data/blob/hipster.txt;http://glenna.com;../fake-data/blob/hipster.png;image/png;2022-02-06T19:07:13;2022-02-06T19:29:23;2;9
+10;input;ANYTHING;invoice;../fake-data/blob/hipster.txt;https://haylee.com;../fake-data/blob/hipster.png;image/png;2022-02-06T10:11:07;2022-02-06T12:05:24;1;10

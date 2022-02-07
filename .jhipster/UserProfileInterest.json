@@ -1,0 +1,40 @@
+{
+  "applications": ["learn"],
+  "changelogDate": "20220207020059",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_profile_interest",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserProfileInterest",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "userProfileInterest",
+      "relationshipName": "userProfile",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "interest",
+      "otherEntityRelationshipName": "userProfileInterest",
+      "relationshipName": "interest",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

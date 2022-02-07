@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-profile-interest-heading"
+        data-cy="UserProfileInterestCreateUpdateHeading"
+        jhiTranslate="learnApp.userProfileInterest.home.createOrEditLabel"
+      >
+        Create or edit a User Profile Interest
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="learnApp.userProfileInterest.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userProfileInterest.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userProfileInterest.userProfile" for="field_userProfile"
+            >User Profile</label
+          >
+          <select class="form-control" id="field_userProfile" data-cy="userProfile" name="userProfile" formControlName="userProfile">
+            <option *ngIf="!editForm.get('userProfile')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                userProfileOption.id === editForm.get('userProfile')!.value?.id ? editForm.get('userProfile')!.value : userProfileOption
+              "
+              *ngFor="let userProfileOption of userProfilesSharedCollection; trackBy: trackUserProfileById"
+            >
+              {{ userProfileOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['userProfile'])!.invalid && (editForm.get(['userProfile'])!.dirty || editForm.get(['userProfile'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['userProfile'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userProfileInterest.interest" for="field_interest">Interest</label>
+          <select class="form-control" id="field_interest" data-cy="interest" name="interest" formControlName="interest">
+            <option *ngIf="!editForm.get('interest')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="interestOption.id === editForm.get('interest')!.value?.id ? editForm.get('interest')!.value : interestOption"
+              *ngFor="let interestOption of interestsSharedCollection; trackBy: trackInterestById"
+            >
+              {{ interestOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['interest'])!.invalid && (editForm.get(['interest'])!.dirty || editForm.get(['interest'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['interest'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

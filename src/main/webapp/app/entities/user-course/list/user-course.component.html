@@ -1,0 +1,121 @@
+<div>
+  <h2 id="page-heading" data-cy="UserCourseHeading">
+    <span jhiTranslate="learnApp.userCourse.home.title">User Courses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="learnApp.userCourse.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-course"
+        [routerLink]="['/user-course/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="learnApp.userCourse.home.createLabel"> Create a new User Course </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userCourses?.length === 0">
+    <span jhiTranslate="learnApp.userCourse.home.notFound">No userCourses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="userCourses && userCourses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="learnApp.userCourse.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="code"><span jhiTranslate="learnApp.userCourse.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="courseType">
+            <span jhiTranslate="learnApp.userCourse.courseType">Course Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="learnApp.userCourse.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="desc"><span jhiTranslate="learnApp.userCourse.desc">Desc</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="url"><span jhiTranslate="learnApp.userCourse.url">Url</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cover"><span jhiTranslate="learnApp.userCourse.cover">Cover</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="beginDt">
+            <span jhiTranslate="learnApp.userCourse.beginDt">Begin Dt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dueDt">
+            <span jhiTranslate="learnApp.userCourse.dueDt">Due Dt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <span jhiTranslate="learnApp.userCourse.user">User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="course.name">
+            <span jhiTranslate="learnApp.userCourse.course">Course</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let userCourse of userCourses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-course', userCourse.id, 'view']">{{ userCourse.id }}</a>
+          </td>
+          <td>{{ userCourse.code }}</td>
+          <td jhiTranslate="{{ 'learnApp.CourseType.' + userCourse.courseType }}">{{ userCourse.courseType }}</td>
+          <td>{{ userCourse.name }}</td>
+          <td>{{ userCourse.desc }}</td>
+          <td>{{ userCourse.url }}</td>
+          <td>
+            <a *ngIf="userCourse.cover" (click)="openFile(userCourse.cover, userCourse.coverContentType)">
+              <img
+                [src]="'data:' + userCourse.coverContentType + ';base64,' + userCourse.cover"
+                style="max-height: 30px"
+                alt="userCourse image"
+              />
+            </a>
+            <span *ngIf="userCourse.cover">{{ userCourse.coverContentType }}, {{ byteSize(userCourse.cover) }}</span>
+          </td>
+          <td>{{ userCourse.beginDt | formatMediumDatetime }}</td>
+          <td>{{ userCourse.dueDt | formatMediumDatetime }}</td>
+          <td>
+            {{ userCourse.user?.login }}
+          </td>
+          <td>
+            <div *ngIf="userCourse.course">
+              <a [routerLink]="['/course', userCourse.course?.id, 'view']">{{ userCourse.course?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-course', userCourse.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-course', userCourse.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userCourse)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
