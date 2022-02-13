@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userCourse">
+      <h2 data-cy="userCourseDetailsHeading"><span jhiTranslate="learnApp.userCourse.detail.title">User Course</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="learnApp.userCourse.id">Id</span></dt>
+        <dd>
+          <span>{{ userCourse.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.code">Code</span></dt>
+        <dd>
+          <span>{{ userCourse.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.courseType">Course Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'learnApp.CourseType.' + userCourse.courseType }}">{{ userCourse.courseType }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.name">Name</span></dt>
+        <dd>
+          <span>{{ userCourse.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.desc">Desc</span></dt>
+        <dd>
+          <span>{{ userCourse.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.url">Url</span></dt>
+        <dd>
+          <span>{{ userCourse.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.cover">Cover</span></dt>
+        <dd>
+          <div *ngIf="userCourse.cover">
+            <a (click)="openFile(userCourse.cover, userCourse.coverContentType)">
+              <img
+                [src]="'data:' + userCourse.coverContentType + ';base64,' + userCourse.cover"
+                style="max-width: 100%"
+                alt="userCourse image"
+              />
+            </a>
+            {{ userCourse.coverContentType }}, {{ byteSize(userCourse.cover) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.beginDt">Begin Dt</span></dt>
+        <dd>
+          <span>{{ userCourse.beginDt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.dueDt">Due Dt</span></dt>
+        <dd>
+          <span>{{ userCourse.dueDt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.user">User</span></dt>
+        <dd>
+          <span>{{ userCourse.user?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.userCourse.course">Course</span></dt>
+        <dd>
+          <div *ngIf="userCourse.course">
+            <a [routerLink]="['/course', userCourse.course?.id, 'view']">{{ userCourse.course?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-course', userCourse.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="course">
+      <h2 data-cy="courseDetailsHeading"><span jhiTranslate="learnApp.course.detail.title">Course</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="learnApp.course.id">Id</span></dt>
+        <dd>
+          <span>{{ course.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.code">Code</span></dt>
+        <dd>
+          <span>{{ course.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.courseType">Course Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'learnApp.CourseType.' + course.courseType }}">{{ course.courseType }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.name">Name</span></dt>
+        <dd>
+          <span>{{ course.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.desc">Desc</span></dt>
+        <dd>
+          <span>{{ course.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.url">Url</span></dt>
+        <dd>
+          <span>{{ course.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.cover">Cover</span></dt>
+        <dd>
+          <div *ngIf="course.cover">
+            <a (click)="openFile(course.cover, course.coverContentType)">
+              <img [src]="'data:' + course.coverContentType + ';base64,' + course.cover" style="max-width: 100%" alt="course image" />
+            </a>
+            {{ course.coverContentType }}, {{ byteSize(course.cover) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.version">Version</span></dt>
+        <dd>
+          <span>{{ course.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.createdDt">Created Dt</span></dt>
+        <dd>
+          <span>{{ course.createdDt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ course.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.startDt">Start Dt</span></dt>
+        <dd>
+          <span>{{ course.startDt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="learnApp.course.endDt">End Dt</span></dt>
+        <dd>
+          <span>{{ course.endDt | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/course', course.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-course-heading" data-cy="UserCourseCreateUpdateHeading" jhiTranslate="learnApp.userCourse.home.createOrEditLabel">
+        Create or edit a User Course
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.courseType" for="field_courseType">Course Type</label>
+          <select class="form-control" name="courseType" formControlName="courseType" id="field_courseType" data-cy="courseType">
+            <option [ngValue]="null">{{ 'learnApp.CourseType.null' | translate }}</option>
+            <option *ngFor="let courseType of courseTypeValues" [value]="courseType">
+              {{ 'learnApp.CourseType.' + courseType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.desc" for="field_desc">Desc</label>
+          <textarea class="form-control" name="desc" id="field_desc" data-cy="desc" formControlName="desc"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.url" for="field_url">Url</label>
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.cover" for="field_cover">Cover</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('coverContentType')!.value + ';base64,' + editForm.get('cover')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('cover')!.value"
+              alt="userCourse image"
+            />
+            <div *ngIf="editForm.get('cover')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('coverContentType')!.value }}, {{ byteSize(editForm.get('cover')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('cover', 'coverContentType', 'file_cover')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_cover"
+              data-cy="cover"
+              (change)="setFileData($event, 'cover', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="cover" id="field_cover" data-cy="cover" formControlName="cover" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="coverContentType"
+            id="field_coverContentType"
+            formControlName="coverContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.beginDt" for="field_beginDt">Begin Dt</label>
+          <div class="d-flex">
+            <input
+              id="field_beginDt"
+              data-cy="beginDt"
+              type="datetime-local"
+              class="form-control"
+              name="beginDt"
+              formControlName="beginDt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.dueDt" for="field_dueDt">Due Dt</label>
+          <div class="d-flex">
+            <input
+              id="field_dueDt"
+              data-cy="dueDt"
+              type="datetime-local"
+              class="form-control"
+              name="dueDt"
+              formControlName="dueDt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
+            <option *ngIf="!editForm.get('user')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.login }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['user'])!.invalid && (editForm.get(['user'])!.dirty || editForm.get(['user'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['user'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="learnApp.userCourse.course" for="field_course">Course</label>
+          <select class="form-control" id="field_course" data-cy="course" name="course" formControlName="course">
+            <option *ngIf="!editForm.get('course')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="courseOption.id === editForm.get('course')!.value?.id ? editForm.get('course')!.value : courseOption"
+              *ngFor="let courseOption of coursesSharedCollection; trackBy: trackCourseById"
+            >
+              {{ courseOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['course'])!.invalid && (editForm.get(['course'])!.dirty || editForm.get(['course'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['course'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+{
+  "applications": ["learn"],
+  "changelogDate": "20220207020058",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_course",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "courseType",
+      "fieldType": "CourseType",
+      "fieldValues": "PROGRAM,SPECIALIZATION,COURSE,SECTION,LECTURE,WEEK,ANYTHING"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desc",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cover",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "beginDt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dueDt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserCourse",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "userCourse",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "userCourse",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}
